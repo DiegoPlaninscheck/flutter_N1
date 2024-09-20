@@ -14,6 +14,13 @@ class HomePage extends StatelessWidget {
           ),
           backgroundColor: const Color(0xFF2A0308),
         ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          child: const Icon(
+            Icons.add,
+            color: Color(0xFFE2AC3F),
+          ),
+        ),
         body: ListViewWidget());
   }
 }
