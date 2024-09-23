@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:testing_flutter/Cadastro.dart';
 import 'package:testing_flutter/ListViewWidget.dart';
+
+import 'model/Produto.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -15,7 +18,9 @@ class HomePage extends StatelessWidget {
           backgroundColor: const Color(0xFF2A0308),
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => const Cadastro()));
+          },
           child: const Icon(
             Icons.add,
             color: Color(0xFFE2AC3F),
