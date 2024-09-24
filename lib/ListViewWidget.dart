@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:testing_flutter/editarProdutoScreen.dart';
 import 'package:testing_flutter/model/Categoria.dart';
 import 'package:testing_flutter/model/Produto.dart';
 import 'cadastrarProdutoScreen.dart';
@@ -23,6 +24,12 @@ class _ListViewWidget extends State<ListViewWidget> {
     });
   }
 
+  void _editarProduto(Produto produto, int id) {
+    setState(() {
+      widget.produtos[id] = produto;
+    });
+  }
+
   Future<void> _irParaCadastrarProduto(BuildContext context) async {
     final Produto? novoProduto = await Navigator.push(
       context,
@@ -34,6 +41,14 @@ class _ListViewWidget extends State<ListViewWidget> {
     }
   }
 
+  Future<void> _irParaEditarProduto(BuildContext context, int id) async {
+    final Produto? novoProduto = await Navigator.push(context, MaterialPageRoute(builder: (context) => const EditarProdutoScreen()));
+
+    if (novoProduto != null) {
+      _editarProduto(novoProduto, id);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,7 +57,11 @@ class _ListViewWidget extends State<ListViewWidget> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => _irParaCadastrarProduto(context),
-        child: const Icon(Icons.add),
+        backgroundColor: const Color(0xFF2A0308),
+        child: const Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
       ),
       body: Column(
         children: [
@@ -51,11 +70,13 @@ class _ListViewWidget extends State<ListViewWidget> {
               itemCount: widget.produtos.length,
               itemBuilder: (context, id) {
                 return Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 10.0, horizontal: 16.0),
                   child: Card(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     ),
+                    color: const Color(0xFFF8EBBE),
                     elevation: 4,
                     child: Container(
                       padding: const EdgeInsets.all(16.0),
@@ -63,19 +84,28 @@ class _ListViewWidget extends State<ListViewWidget> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            widget.produtos[id].nome,
-                            style: const TextStyle(
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.bold,
-                            ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                widget.produtos[id].nome,
+                                style: const TextStyle(
+                                  fontSize: 20.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              IconButton(
+                                icon: const Icon(Icons.edit),
+                                onPressed: () => _irParaEditarProduto(context, id),
+                              )
+                            ],
                           ),
                           const SizedBox(height: 8.0),
                           Text(
                             widget.produtos[id].descricao,
                             style: const TextStyle(
                               fontSize: 16.0,
-                              color: Colors.black54,
+                              color: Colors.black,
                             ),
                           ),
                           const SizedBox(height: 8.0),
@@ -83,7 +113,7 @@ class _ListViewWidget extends State<ListViewWidget> {
                             'Preço: R\$${widget.produtos[id].preco.toStringAsFixed(2)}',
                             style: const TextStyle(
                               fontSize: 16.0,
-                              color: Colors.green,
+                              color: Color(0xFF7BA58D),
                             ),
                           ),
                           const SizedBox(height: 8.0),
@@ -91,7 +121,7 @@ class _ListViewWidget extends State<ListViewWidget> {
                             'Categoria: ${widget.produtos[id].categoria.nome}',
                             style: const TextStyle(
                               fontSize: 14.0,
-                              color: Colors.blueGrey,
+                              color: Colors.black,
                             ),
                           ),
                         ],

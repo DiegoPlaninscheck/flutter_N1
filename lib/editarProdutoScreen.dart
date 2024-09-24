@@ -3,14 +3,14 @@ import 'package:testing_flutter/model/Categoria.dart';
 import 'package:testing_flutter/model/Produto.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-class CadastrarProdutoScreen extends StatefulWidget {
-  const CadastrarProdutoScreen({super.key});
+class EditarProdutoScreen extends StatefulWidget {
+  const EditarProdutoScreen({super.key});
 
   @override
-  State<StatefulWidget> createState() => _CadastrarProdutoScreenState();
+  State<StatefulWidget> createState() => _EditarProdutoScreenState();
 }
 
-class _CadastrarProdutoScreenState extends State<CadastrarProdutoScreen> {
+class _EditarProdutoScreenState extends State<EditarProdutoScreen> {
   final _nomeController = TextEditingController();
   final _descricaoController = TextEditingController();
   final _precoController = TextEditingController();
@@ -29,7 +29,7 @@ class _CadastrarProdutoScreenState extends State<CadastrarProdutoScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Cadastrar Produto'),
+        title: const Text('Editar Produto'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -59,12 +59,12 @@ class _CadastrarProdutoScreenState extends State<CadastrarProdutoScreen> {
                 final String descricao = _descricaoController.text;
                 final double preco = double.tryParse(_precoController.text) ?? 0;
                 final Categoria categoria = Categoria(_categoriaController.text);
-                String msg = "Erro no cadastro do produto!";
+                String msg = "Erro ao editar o produto!";
                 Color backgroundColor = const Color(0xFFE2AC3F);
                 Color textColor = Colors.white;
 
                 if (nome.isNotEmpty && descricao.isNotEmpty) {
-                  msg = "Produto cadastrado com sucesso!";
+                  msg = "Produto editado com sucesso!";
                   backgroundColor = const Color(0xFF7BA58D);
                   textColor = Colors.black;
                   Produto novoProduto = Produto(nome, descricao, preco, categoria);
@@ -83,7 +83,7 @@ class _CadastrarProdutoScreenState extends State<CadastrarProdutoScreen> {
               style: const ButtonStyle(
                 backgroundColor: WidgetStatePropertyAll(Color(0xFFE2AC3F)),
               ),
-              child: const Text('Cadastrar Produto', style: TextStyle(color: Colors.black),),
+              child: const Text('Editar Produto', style: TextStyle(color: Colors.black),),
             )
           ],
         ),
