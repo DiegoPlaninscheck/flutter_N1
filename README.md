@@ -401,3 +401,48 @@ class _EditarProdutoScreenState extends State<EditarProdutoScreen> {
   }
 }
 ```
+
+## Como usar o aplicativo Flutter:
+
+### 1. Estrutura Principal (Main Widget):
+O ponto de entrada do aplicativo é a função `main()`, que inicia o widget principal `MyApp`. Este widget usa o `MaterialApp` para definir temas e a tela inicial do app.
+
+   ```dart
+   void main() {
+     runApp(const MyApp());
+   }
+   
+   class MyApp extends StatelessWidget {
+     @override
+     Widget build(BuildContext context) {
+       return MaterialApp(
+         title: 'Flutter Demo',
+         theme: ThemeData(
+           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+           useMaterial3: true,
+         ),
+         home: HomeScreen(),
+       );
+     }
+   }
+   ```
+
+### 2. Tela Inicial (HomeScreen):
+Ao iniciar o aplicativo, o usuário é direcionado à `HomeScreen`, onde a interface inicial é exibida. A partir daqui, outras funcionalidades podem ser acessadas, como listas de produtos e opções de edição.
+
+### 3. List View Widget:
+Uma parte importante do aplicativo é o widget `ListView`, que exibe uma lista de produtos. Esses produtos são instâncias da classe `Produto`, que contém informações como nome, descrição, preço e categoria.
+
+   Exemplo:
+   ```dart
+   List<Produto> produtos = [
+     Produto("Tijolo", "Tal", 10, Categoria("Alimento")),
+     Produto("Alfinete", "Tal", 10, Categoria("Coisa")),
+   ];
+   ```
+
+### 4. Outras Funcionalidades:
+   - O aplicativo tem diferentes telas que permitem ao usuário cadastrar e editar produtos.
+   - A navegação entre as telas é gerenciada com o `Navigator` e widgets como `ListView` para exibir dados dinâmicos.
+
+Esse aplicativo é focado em gerenciar produtos, utilizando funcionalidades típicas do Flutter como navegação e gerenciamento de estado.
