@@ -30,6 +30,12 @@ class _ListViewWidget extends State<ListViewWidget> {
     });
   }
 
+  void _deletarProduto(int id) {
+    setState(() {
+      widget.produtos.removeAt(id);
+    });
+  }
+
   Future<void> _irParaCadastrarProduto(BuildContext context) async {
     final Produto? novoProduto = await Navigator.push(
       context,
@@ -42,7 +48,8 @@ class _ListViewWidget extends State<ListViewWidget> {
   }
 
   Future<void> _irParaEditarProduto(BuildContext context, int id) async {
-    final Produto? novoProduto = await Navigator.push(context, MaterialPageRoute(builder: (context) => const EditarProdutoScreen()));
+    final Produto? novoProduto = await Navigator.push(context,
+        MaterialPageRoute(builder: (context) => const EditarProdutoScreen()));
 
     if (novoProduto != null) {
       _editarProduto(novoProduto, id);
@@ -96,17 +103,26 @@ class _ListViewWidget extends State<ListViewWidget> {
                               ),
                               IconButton(
                                 icon: const Icon(Icons.edit),
-                                onPressed: () => _irParaEditarProduto(context, id),
+                                onPressed: () =>
+                                    _irParaEditarProduto(context, id),
                               )
                             ],
                           ),
                           const SizedBox(height: 8.0),
-                          Text(
-                            widget.produtos[id].descricao,
-                            style: const TextStyle(
-                              fontSize: 16.0,
-                              color: Colors.black,
-                            ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                widget.produtos[id].descricao,
+                                style: const TextStyle(
+                                  fontSize: 16.0,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              IconButton(
+                                  onPressed: () => _deletarProduto(id),
+                                  icon: const Icon(Icons.delete))
+                            ],
                           ),
                           const SizedBox(height: 8.0),
                           Text(
