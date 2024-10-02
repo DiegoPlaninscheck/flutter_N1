@@ -11,7 +11,7 @@
 
 ## Prints do App
 
-<div>
+<div style="display: flex;">
   <img src="./tela_inicial.png">
   <img src="./cadastrar_produto.png">
 </div>
