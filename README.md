@@ -1,4 +1,20 @@
 # Atividade avaliativa sobre Flutter
+## Atividade realizada por: Diego Planinscheck e Gabriel Henrique Karing
+
+## Paleta de cores
+
+### Link da paleta de cores
+#### https://paletadecores.com/paleta/2a0308/924f1b/e2ac3f/f8ebbe/7ba58d/
+
+### Hexadecimais da cores
+### `#2a0308` - `#924f1b` - `#e2ac3f` - `#f8ebbe` - `#7ba58d`
+
+## Prints do App
+
+<div>
+  <img src="./tela_inicial.png">
+  <img src="./cadastrar_produto.png">
+</div>
 
 ## Widgets
 
